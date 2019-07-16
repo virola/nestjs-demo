@@ -1,24 +1,24 @@
 import { Controller, Get, Post, Param } from '@nestjs/common';
 import { MessagesService } from './messages.service';
-import { Messages } from './messages.entity';
+import { Message } from './message.entity';
 
 @Controller('messages')
 export class MessagesController {
-  constructor(private readonly messagesService: MessagesService) { }
+  constructor(private readonly messageService: MessagesService) { }
 
   @Get()
-  findAll(): Promise<Messages[]> {
-    return this.messagesService.findAll();
+  findAll(): Promise<Message[]> {
+    return this.messageService.findAll();
   }
 
   @Post()
-  create(): Promise<Messages> {
-    return this.messagesService.save();
+  create(): Promise<Message> {
+    return this.messageService.save();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<Messages> {
-    return this.messagesService.findOne(+id);
+  findOne(@Param('id') id: string): Promise<Message> {
+    return this.messageService.findOne(+id);
   }
 
 }
