@@ -27,4 +27,10 @@ export class Message extends BaseEntity {
 
   @Column('int')
   updator: number;
+
+  @Column('int', { name: 'is_read', default: 0 })
+  isRead: number;
+
+  @Column({ default: false })
+  deleted: boolean;
 }
