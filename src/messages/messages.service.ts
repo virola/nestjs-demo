@@ -42,6 +42,9 @@ export class MessagesService {
   }
 
   async remove(id: number): Promise<void> {
-    await this.messagesRepository.delete(id);
+    const message = await Message.findOne(id);
+    console.log(message);
+    message.deleted = true;
+    await message.save();
   }
 }
