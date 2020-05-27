@@ -19,11 +19,9 @@ import { MessagesModule } from './messages/messages.module';
     }),
     MessagesModule,
   ],
-  controllers: [
-    AppController,
-  ],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
-  constructor(private readonly connection: Connection) { }
+  constructor(private readonly connection: Connection) {}
 }
