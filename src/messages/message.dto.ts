@@ -1,4 +1,7 @@
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+
+const moment = require('moment');
 
 export class MessageDto {
   @ApiProperty({
@@ -19,15 +22,18 @@ export class MessageDto {
   @ApiProperty({
     description: '消息内容',
   })
+  @IsNotEmpty({ message: '消息内容不能为空' })
   readonly content: string;
 
   @ApiProperty({
     description: '创建时间',
+    default: moment().format('YYYY-MM-DD HH:mm:ss')
   })
   readonly createdTime: string;
 
   @ApiProperty({
     description: '更新时间',
+    default: moment().format('YYYY-MM-DD HH:mm:ss')
   })
   readonly updatedTime: string;
 
@@ -51,6 +57,7 @@ export class CreateMessageDto {
   @ApiProperty({
     description: '消息内容',
   })
+  @IsNotEmpty({ message: '消息内容不能为空' })
   readonly content: string;
 }
 
@@ -74,6 +81,7 @@ export class UpdateMessageDto {
   @ApiPropertyOptional({
     description: '消息内容',
   })
+  @IsNotEmpty({ message: '消息内容不能为空' })
   readonly content: string;
 
   @ApiPropertyOptional()
